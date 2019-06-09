@@ -1,18 +1,28 @@
 <template>
   <div>
-       <el-button type="primary">主要按钮</el-button>
-
+       
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
+  // import axios from 'axios';
 
 
 export default {
-  
+
 }
 </script>
 
 <style>
-
+  *{
+    margin: 0;
+    padding: 0;
+  };
+  ul,li,ol{
+    list-style: none;
+  };
+  a{
+    color:#333
+  }
 </style>
