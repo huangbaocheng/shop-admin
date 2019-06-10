@@ -10,7 +10,8 @@
           <Header @click="handleChangeShow"></Header>
         </el-header>
         <el-main>
-          <Mianbao></Mianbao>Main
+          <Mianbao></Mianbao>
+        <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
