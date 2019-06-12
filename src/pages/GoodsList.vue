@@ -3,7 +3,7 @@
         <!-- 商品顶部列表 -->
         <el-row type='flex' justify="space-between">
             <div> 
-                <el-button >新增</el-button>
+                <el-button @click='handleAdd'>新增</el-button>
                 <el-button type="danger" @click='handleDeleteMore'>删除</el-button>
             </div>
             <!-- 搜索输入框 -->
@@ -188,8 +188,8 @@ export default {
             this.selectGoods=val;
         },
             //编辑
-        handleEdit(index, row) {
-            console.log(index, row);
+        handleEdit(goods) {
+           this.$router.push('/admin/goods-edit/'+goods.id)
         },
             //删除单个
         handleDelete(goods) {
@@ -224,6 +224,10 @@ export default {
             this.pageIndex=val;
             //重新发起请求
             this.getList();
+        },
+        //新增
+        handleAdd(){
+            this.$router.push('/admin/goods-add');
         },
       
 

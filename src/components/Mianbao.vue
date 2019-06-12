@@ -27,7 +27,7 @@ export default {
                 info.push(v.meta)
             })
             this.info=info
-           console.log(this.info);
+        //    console.log(this.info);
         }
     }
 }

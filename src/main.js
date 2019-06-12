@@ -7,6 +7,8 @@ import Login from "./pages/Login.vue";
 import Admin from './pages/Admin.vue';
 import GoodsList from './pages/GoodsList.vue';
 import CategoryList from './pages/CategoryList.vue';
+import GoodsAdd from './pages/GoodsAdd.vue';
+import GoodsEdit from './pages/GoodsEdit.vue'
 
 //导入组件
 import ElementUI from 'element-ui';
@@ -43,6 +45,16 @@ const routes = [
           componet:CategoryList,
           meta:'栏目列表'
         },
+        {
+          path:'goods-add',
+          component:GoodsAdd,
+          meta:'添加商品'
+        },
+        {
+          path:'goods-edit/:id',
+          component:GoodsEdit,
+          meta:'编辑商品'
+        }
       ]},
 ];
  
