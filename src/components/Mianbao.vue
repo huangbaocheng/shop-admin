@@ -17,6 +17,7 @@ export default {
         }
     },
 
+
     //获取路由的变化
     watch:{
         $route(){

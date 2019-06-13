@@ -227,12 +227,14 @@ import { quillEditor } from 'vue-quill-editor'
         },
         //上传多张图片
         // 删除后的事件处理函数
+        //因为file-list导致参数的fileList的结构和普通的多种上传不一样
         handleRemove(file, fileList) {
             // console.log(file, fileList);
-            const files=fileList.map(v=>{
-                return v.response;
-            });
-            this.form.fileList=files;
+            // const files=fileList.map(v=>{
+            //     return v.response;
+            // });
+            // this.form.fileList=files;
+            this.form.fileList=fileList;
         },
          // 图片的预览
         handlePictureCardPreview(file) {
@@ -243,10 +245,11 @@ import { quillEditor } from 'vue-quill-editor'
         handleCartSuccess(res, file, fileList){
             // console.log(fileList)
             //把fileList的数组中的每一项response属提取出来
-            const files=fileList.map(v=>{
-                return v.response;
-            });
-            this.form.fileList=files;
+            // const files=fileList.map(v=>{
+            //     return v.response;
+            // });
+            // this.form.fileList=files;
+            this.form.fileList.push(file.response);
         },
     }
   }

@@ -2,6 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import axios from 'axios';
 import VueRouter from 'vue-router';
+//导入vuex的store 可以省略store/index.js
+import store from './store';
 //导入组件
 import Login from "./pages/Login.vue";
 import Admin from './pages/Admin.vue';
@@ -42,7 +44,7 @@ const routes = [
         },
         {
           path:'category-list',
-          componet:CategoryList,
+          component:CategoryList,
           meta:'栏目列表'
         },
         {
@@ -61,6 +63,41 @@ const routes = [
   //路由实例对象
   const router=new VueRouter({routes});
 
+  // 路由守卫
+// to: 去哪个页面
+// from:页面的来源
+// next：是函数可以接受参数，接收参数是`url`，并且可以跳转到该`url`，如果不传参数会跳转`to`的页面
+// next()方法是必须要调用的
+router.beforeEach((to, from, next) => {
+  // console.log(to, from);
+  //判断是否登陆
+  axios({
+    url: "http://localhost:8899/admin/account/islogin",
+    method: "GET",
+    //处理session的跨域
+    withCredentials: true,
+  }).then(res =>{
+    const {code} =res.data;
+    //访问的页面是登陆页
+    if(to.path==='/login'){
+      if(code=='logined'){
+        next('/admin/goods-list')
+      }else{
+        //未登录
+        next();
+      }
+    }else{//访问非登陆页
+      if(code==='logined'){
+        next()
+      }else{//未登录
+        next('/login')
+
+      }
+    }
+  })
+ 
+});
+
 
 
 Vue.config.productionTip = false;
@@ -69,7 +106,10 @@ Vue.prototype.$axios=axios;
 
 new Vue({
   render: h => h(App),
+  //挂载路由
   router,
+  //仓库对象
+  store,
 }).$mount('#app')//绑定控制区域相当于el  $mount
 
 

@@ -65,6 +65,20 @@ export default {
              withCredentials: true,
           }).then(res => {
             const { message, status } = res.data;
+
+              
+              /**
+               * 设置仓库中的数据
+               * 
+               * 
+               * 
+               * $store 下的方法 commit 设置仓库的数据
+               * commit 方法调用仓库中mutations的方法 
+               * 第一个参数是方法名，
+               * 第二个参数就是传递的数据对象
+               * 
+               */
+              this.$store.commit('setUser',message);
             //登陆成功
             if (status == 0) {
               this.$router.push("/");
